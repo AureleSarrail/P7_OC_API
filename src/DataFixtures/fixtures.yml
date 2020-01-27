@@ -1,0 +1,9 @@
+App\Entity\Product:
+  product{1..10}:
+    name: '<name()>'
+    description: '<words(6,true)>'
+    characteristics: "[
+          'name' => '<name()>'
+          'size' => '<randomDigit()>'
+    ]"
+    price: '<randomFloat(2,100)>'
