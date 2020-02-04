@@ -21,12 +21,14 @@ class Product
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"productList", "productDetails"})
+     *
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("productDetails")
+     *
      */
     private $description;
 
@@ -38,7 +40,8 @@ class Product
 
     /**
      * @ORM\Column(type="float")
-     * @Groups("productDetails")
+     * @Groups("productList")
+     *
      */
     private $price;
 

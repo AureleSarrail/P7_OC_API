@@ -11,3 +11,20 @@ App\Entity\Product:
       size: '<randomDigit()>'
     price: '<randomFloat(2,100)>'
     brand: '@brand<numberBetween(1,10)>'
+
+App\Entity\User:
+  user{1..10}:
+    username: '<company()>'
+    mail: '<companyEmail()>'
+    password: '<password()>'
+
+App\Entity\Customer:
+  customer{1..50}:
+    name: '<name()>'
+    street: '<streetAddress()>'
+    city: '<city()>'
+    zipCode: '<postcode()>'
+    country: '<country()>'
+    mail: '<email()>'
+    createdAt: '<dateTimeBetween(''-30 days'', ''now'')>'
+    user: '@user<numberBetween(1,10)>'
