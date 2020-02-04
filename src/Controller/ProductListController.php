@@ -22,3 +22,4 @@ class ProductListController extends AbstractController
         ]);
     }
 }
+
