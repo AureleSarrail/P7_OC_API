@@ -14,38 +14,38 @@ class Product
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups("productList")
+     * @Groups({"productList", "productDetails"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("productList")
+     * @Groups({"productList", "productDetails"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("productList")
+     * @Groups("productDetails")
      */
     private $description;
 
     /**
      * @ORM\Column(type="array")
-     * @Groups("productList")
+     * @Groups("productDetails")
      */
     private $characteristics;
 
     /**
      * @ORM\Column(type="float")
-     * @Groups("productList")
+     * @Groups("productDetails")
      */
     private $price;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Brand", inversedBy="Product")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups("productList")
+     * @Groups({"productList", "productDetails"})
      */
     private $brand;
 

@@ -16,13 +16,13 @@ class Brand
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups("productList")
+     * @Groups({"productList", "productDetails"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("productList")
+     * @Groups({"productList", "productDetails"})
      */
     private $name;
 
