@@ -14,44 +14,50 @@ class Customer
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups("customersList")
+     * @Groups({"customersList", "customerDetails"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("customersList")
+     * @Groups({"customersList", "customerDetails"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"customersList", "customerDetails"})
      */
     private $street;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"customersList", "customerDetails"})
      */
     private $city;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"customersList", "customerDetails"})
      */
     private $zipCode;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"customersList", "customerDetails"})
      */
     private $country;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"customersList", "customerDetails"})
      * @Groups("customersList")
      */
     private $mail;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"customersList", "customerDetails"})
      */
     private $createdAt;
 
