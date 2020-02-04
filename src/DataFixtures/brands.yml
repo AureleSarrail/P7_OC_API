@@ -1,0 +1,13 @@
+App\Entity\Brand:
+  brand{1..10}:
+    name: '<word()>'
+
+App\Entity\Product:
+  product{1..10}:
+    name: '<name()>'
+    description: '<words(6,true)>'
+    characteristics:
+      name: '<name()>'
+      size: '<randomDigit()>'
+    price: '<randomFloat(2,100)>'
+    brand: '@brand<numberBetween(1,10)>'

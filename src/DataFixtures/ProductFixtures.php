@@ -15,10 +15,12 @@ class ProductFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $loader = new NativeLoader();
-        $objectSet = $loader->loadFile(__DIR__ . '\fixtures.yml')->getObjects();
+
+        $objectSet = $loader->loadFile(__DIR__ . '\brands.yml')->getObjects();
         foreach($objectSet as $object) {
             $manager->persist($object);
         }
+
         $manager->flush();
     }
 }
