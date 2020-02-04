@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CustomerRepository")
@@ -13,11 +14,13 @@ class Customer
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups("customersList")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("customersList")
      */
     private $name;
 
@@ -43,6 +46,7 @@ class Customer
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("customersList")
      */
     private $mail;
 
