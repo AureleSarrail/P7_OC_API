@@ -5,7 +5,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation as Serializer;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BrandRepository")
@@ -28,12 +29,13 @@ class Brand
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Product", mappedBy="brand")
+     * @Groups("brandShow")
      */
-    private $Product;
+    private $product;
 
     public function __construct()
     {
-        $this->Product = new ArrayCollection();
+        $this->product = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -58,13 +60,13 @@ class Brand
      */
     public function getProduct(): Collection
     {
-        return $this->Product;
+        return $this->product;
     }
 
     public function addProduct(Product $product): self
     {
-        if (!$this->Product->contains($product)) {
-            $this->Product[] = $product;
+        if (!$this->product->contains($product)) {
+            $this->product[] = $product;
             $product->setBrand($this);
         }
 
@@ -73,8 +75,8 @@ class Brand
 
     public function removeProduct(Product $product): self
     {
-        if ($this->Product->contains($product)) {
-            $this->Product->removeElement($product);
+        if ($this->product->contains($product)) {
+            $this->product->removeElement($product);
             // set the owning side to null (unless already changed)
             if ($product->getBrand() === $this) {
                 $product->setBrand(null);

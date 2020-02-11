@@ -26,32 +26,31 @@ class Customer
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"customersList", "customerDetails"})
+     * @Groups({"customerDetails"})
      */
     private $street;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"customersList", "customerDetails"})
+     * @Groups({"customerDetails"})
      */
     private $city;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"customersList", "customerDetails"})
+     * @Groups("customerDetails")
      */
     private $zipCode;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"customersList", "customerDetails"})
+     * @Groups("customerDetails")
      */
     private $country;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"customersList", "customerDetails"})
-     * @Groups("customersList")
      */
     private $mail;
 
@@ -65,7 +64,7 @@ class Customer
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="customers")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $User;
+    private $user;
 
     public function getId(): ?int
     {
@@ -158,12 +157,12 @@ class Customer
 
     public function getUser(): ?User
     {
-        return $this->User;
+        return $this->user;
     }
 
-    public function setUser(?User $User): self
+    public function setUser(?User $user): self
     {
-        $this->User = $User;
+        $this->user = $user;
 
         return $this;
     }

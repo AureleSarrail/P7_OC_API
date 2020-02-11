@@ -3,10 +3,25 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\Groups;
+use Hateoas\Configuration\Annotation as Hateoas;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
+ * @Hateoas\Relation(
+ *     "self",
+ *     href = @Hateoas\Route(
+ *     "product_details",
+ *     parameters={"id" = "expr(object.getId())"}
+ *      ),
+ *      exclusion = @Hateoas\Exclusion(groups = {"productList", "productDetails"})
+ * )
+ * @Hateoas\Relation(
+ *     "list",
+ *     href = @Hateoas\Route(
+ *     "product_list"),
+ *      exclusion = @Hateoas\Exclusion(groups = {"productDetails"})
+ * )
  */
 class Product
 {
@@ -40,7 +55,7 @@ class Product
 
     /**
      * @ORM\Column(type="float")
-     * @Groups("productList")
+     * @Groups({"productList", "productDetails"})
      *
      */
     private $price;
