@@ -42,7 +42,7 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Customer", mappedBy="User", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Customer", mappedBy="user", orphanRemoval=true)
      * @Groups({"customersList"})
      */
     private $customers;

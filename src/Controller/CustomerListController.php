@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\UserRepository;
+use JMS\Serializer\SerializationContext;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -23,7 +24,7 @@ class CustomerListController extends AbstractController
 
         $customers = $user->getCustomers();
 
-        $json = $serializer->serialize($customers, 'json');
+        $json = $serializer->serialize($customers, 'json', SerializationContext::create()->setGroups(['customersList']));
 
         return new JsonResponse($json, Response::HTTP_OK, [], true);
     }
