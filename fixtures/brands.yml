@@ -1,6 +1,10 @@
 App\Entity\Brand:
-  brand{1..10}:
-    name: '<word()>'
+  brand1:
+    name: Opple
+  brand2:
+    name: Somsung
+  brand3:
+    name: Xiamo
 
 App\Entity\Product:
   product{1..10}:
@@ -10,13 +14,13 @@ App\Entity\Product:
       name: '<name()>'
       size: '<randomDigit()>'
     price: '<randomFloat(2,100)>'
-    brand: '@brand<numberBetween(1,10)>'
+    brand: '@brand<numberBetween(1,3)>'
 
 App\Entity\User:
   user{1..10}:
     username: '<company()>'
     mail: '<companyEmail()>'
-    password: '<password()>'
+    plainPassword: 'test'
 
 App\Entity\Customer:
   customer{1..50}:

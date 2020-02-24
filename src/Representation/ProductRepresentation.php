@@ -8,6 +8,8 @@ use App\Repository\ProductRepository;
 use Hateoas\Representation\CollectionRepresentation;
 use Hateoas\Representation\PaginatedRepresentation;
 use JMS\Serializer\ArrayTransformerInterface;
+use JMS\Serializer\Context;
+use JMS\Serializer\ContextFactory\SerializationContextFactoryInterface;
 use JMS\Serializer\SerializationContext;
 
 class ProductRepresentation
@@ -22,9 +24,14 @@ class ProductRepresentation
      */
     private $repo;
 
-    public function __construct(ArrayTransformerInterface $arrayTransformer, ProductRepository $repo)
-    {
+    public function __construct(
+        SerializationContextFactoryInterface $factory,
+        ArrayTransformerInterface $arrayTransformer,
+        ProductRepository $repo
+    ) {
         $this->arrayTransformer = $arrayTransformer;
+        $this->context = $factory->createSerializationContext();
+        $this->context->setGroups('productList');
         $this->repo = $repo;
     }
 
@@ -33,7 +40,7 @@ class ProductRepresentation
         $pager = $this->repo->search($page, $limit);
 
         $normalized = $this->arrayTransformer->toArray($pager->getCurrentPageResults(),
-            SerializationContext::create()->setGroups('productList'));
+            $this->context);
 
         $paginatedCollection = new PaginatedRepresentation(
             new CollectionRepresentation($normalized),

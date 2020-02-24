@@ -31,4 +31,13 @@ class ProductRepository extends AbstractRepository
         return $this->paginate($qb,$limit,$page);
     }
 
+    public function getSearchQuery($page){
+
+        return $this->createQueryBuilder('p')
+            ->setMaxResults(self::MAX_PER_PAGE)
+            ->setFirstResult(($page-1) * self::MAX_PER_PAGE)
+            ->orderBy('p.id', 'asc')
+            ->getQuery();
+    }
+
 }
