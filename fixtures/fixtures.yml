@@ -17,8 +17,20 @@ App\Entity\Product:
     brand: '@brand<numberBetween(1,3)>'
 
 App\Entity\User:
-  user{1..10}:
-    username: '<company()>'
+  user1:
+    username: PhoneSale
+    mail: '<companyEmail()>'
+    plainPassword: 'test'
+  user2:
+    username: PhoneTel
+    mail: '<companyEmail()>'
+    plainPassword: 'test'
+  user3:
+    username: TelSale
+    mail: '<companyEmail()>'
+    plainPassword: 'test'
+  user4:
+    username: TelTel
     mail: '<companyEmail()>'
     plainPassword: 'test'
 
@@ -31,4 +43,4 @@ App\Entity\Customer:
     country: '<country()>'
     mail: '<email()>'
     createdAt: '<dateTimeBetween(''-30 days'', ''now'')>'
-    user: '@user<numberBetween(1,10)>'
+    user: '@user<numberBetween(1,4)>'
