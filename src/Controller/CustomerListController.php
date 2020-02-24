@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Repository\UserRepository;
 use JMS\Serializer\SerializationContext;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,18 +12,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class CustomerListController extends AbstractController
 {
     /**
-     * @Route("{id<\d+>}/customers", name="customer_list")
-     * @param $id
-     * @param UserRepository $repo
+     * @Route("/customers", name="customer_list")
+     * @param SerializerInterface $serializer
      * @return JsonResponse
      */
-    public function index($id, UserRepository $repo, SerializerInterface $serializer)
+    public function index(SerializerInterface $serializer)
     {
-        $user = $repo->find($id);
+        $user = $this->getUser();
 
         $customers = $user->getCustomers();
 
-        $json = $serializer->serialize($customers, 'json', SerializationContext::create()->setGroups(['customersList']));
+        $json = $serializer->serialize($customers, 'json',
+            SerializationContext::create()->setGroups(['customersList']));
 
         return new JsonResponse($json, Response::HTTP_OK, [], true);
     }
