@@ -47,6 +47,8 @@ class User implements UserInterface
      */
     private $customers;
 
+    private $plainPassword;
+
     public function __construct()
     {
         $this->customers = new ArrayCollection();
@@ -170,5 +172,21 @@ class User implements UserInterface
         }
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param mixed $plainPassword
+     */
+    public function setPlainPassword($plainPassword): void
+    {
+        $this->plainPassword = $plainPassword;
     }
 }
