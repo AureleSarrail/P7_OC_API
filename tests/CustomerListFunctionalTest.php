@@ -46,11 +46,11 @@ class CustomerListFunctionalTest extends WebTestCase
 
         $client->request('GET', '/customers');
 
-        $data = json_decode($client->getResponse()->getContent());
+        $data = json_decode($client->getResponse()->getContent(), true);
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $this->assertIsArray($data);
-        $this->assertCount(11, $data);
+        $this->assertCount(6, $data);
         $this->assertJson($client->getResponse()->getContent());
     }
 }
