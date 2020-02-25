@@ -4,3 +4,20 @@
 
 api_login_check:
   path: /api/login_check
+  methods: POST
+
+productList:
+  path: /products
+  methods: GET
+
+productDetails:
+  path: /products/{id}
+  methods: GET
+
+customersList:
+  path: /customers
+  methods: GET
+
+customerDetails:
+  path: /customers/{id}
+  methods: GET
