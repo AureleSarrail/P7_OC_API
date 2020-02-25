@@ -8,9 +8,7 @@ use App\Repository\ProductRepository;
 use Hateoas\Representation\CollectionRepresentation;
 use Hateoas\Representation\PaginatedRepresentation;
 use JMS\Serializer\ArrayTransformerInterface;
-use JMS\Serializer\Context;
 use JMS\Serializer\ContextFactory\SerializationContextFactoryInterface;
-use JMS\Serializer\SerializationContext;
 
 class ProductRepresentation
 {

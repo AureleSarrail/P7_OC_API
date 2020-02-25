@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 class ProductDetailsController extends AbstractController
 {
     /**
-     * @Route("/product/{id<\d+>}", name="product_details")
+     * @Route("/products/{id<\d+>}", name="product_details")
      * @param $id
      * @param ProductRepository $repo
      * @return Response

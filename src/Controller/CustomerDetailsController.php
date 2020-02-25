@@ -14,9 +14,10 @@ use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 class CustomerDetailsController extends AbstractController
 {
     /**
-     * @Route("/customer/{id<\d+>}", name="customer_details")
+     * @Route("/customers/{id<\d+>}", name="customer_details")
      * @param $id
      * @param CustomerRepository $repo
+     * @param SerializerInterface $serializer
      * @return JsonResponse
      */
     public function index($id, CustomerRepository $repo, SerializerInterface $serializer)
