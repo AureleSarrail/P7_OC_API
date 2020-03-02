@@ -11,11 +11,12 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\ConstraintViolationList;
 
 class CreateCustomerController extends AbstractController
 {
     /**
-     * @Route("/customers/create", name="create_customer")
+     * @Route("/customers", name="create_customer", methods={"POST"})
      * @param SerializerInterface $serializer
      * @param Request $request
      * @param CustomerCreateService $service
@@ -23,12 +24,20 @@ class CreateCustomerController extends AbstractController
      */
     public function index(SerializerInterface $serializer, Request $request, CustomerCreateService $service)
     {
-        $customer = $service->customerCreate($this->getUser(),
+        $response = $service->customerCreate($this->getUser(),
             $serializer->deserialize($request->getContent(), Customer::class, 'json'));
 
-        $json = $serializer->serialize($customer, 'json', SerializationContext::create()->setGroups('customerDetails'));
+//        dd($response);
 
-        return new JsonResponse($json, Response::HTTP_CREATED, [], true);
+        if ($response instanceof ConstraintViolationList) {
+            $json = $serializer->serialize($response, 'json');
 
+            return new JsonResponse($json, Response::HTTP_BAD_REQUEST, [], true);
+        }
+        else {
+            $json = $serializer->serialize($response, 'json', SerializationContext::create()->setGroups('customerDetails'));
+
+            return new JsonResponse($json, Response::HTTP_CREATED, [], true);
+        }
     }
 }

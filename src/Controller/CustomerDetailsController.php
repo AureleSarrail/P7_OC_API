@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 class CustomerDetailsController extends AbstractController
 {
     /**
-     * @Route("/customers/{id<\d+>}", name="customer_details")
+     * @Route("/customers/{id<\d+>}", name="customer_details", methods={"GET"})
      * @param $id
      * @param CustomerRepository $repo
      * @param SerializerInterface $serializer

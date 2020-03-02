@@ -4,7 +4,6 @@
 namespace App\Representation;
 
 
-use App\Entity\User;
 use App\Repository\CustomerRepository;
 use App\Repository\UserRepository;
 use Hateoas\Representation\CollectionRepresentation;

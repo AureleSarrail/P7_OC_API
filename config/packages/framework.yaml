@@ -17,3 +17,5 @@ framework:
 
     serializer:
         enabled: false
+
+    validation: { enable_annotations: true }

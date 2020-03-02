@@ -3,8 +3,6 @@
 
 namespace App\Tests;
 
-
-use App\Entity\Customer;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -36,9 +34,6 @@ class CustomerCreationFunctionalTest extends WebTestCase
 
         $data = json_decode($client->getResponse()->getContent(), true);
 
-//        dd($data);
-
-//        $client = static::createClient();
         $client->setServerParameter('HTTP_Authorization', sprintf('Bearer %s', $data['token']));
 
         return $client;
@@ -59,7 +54,7 @@ class CustomerCreationFunctionalTest extends WebTestCase
         ];
         $json = json_encode($data);
         $client = $this->createAuthenticatedClient('PhoneSale', 'test');
-        $client->request('PUT', '/customers/create', [], [], [], $json);
+        $client->request('POST', '/customers', [], [], [], $json);
 
         $this->assertEquals(201, $client->getResponse()->getStatusCode());
         $this->assertJson($client->getResponse()->getContent());

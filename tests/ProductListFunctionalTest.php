@@ -51,7 +51,6 @@ class ProductListFunctionalTest extends WebTestCase
         $data = json_decode($client->getResponse()->getContent(), true);
 
         $this->assertCount(6, $data);
-        $this->assertIsArray($data);
         $this->assertJson($client->getResponse()->getContent());
     }
 
