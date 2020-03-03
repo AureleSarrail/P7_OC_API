@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Controller\Exceptions\NoCustomerFoundException;
 use App\Repository\CustomerRepository;
 use JMS\Serializer\SerializationContext;
 use JMS\Serializer\SerializerInterface;
@@ -9,7 +10,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class CustomerDetailsController extends AbstractController
 {
@@ -19,13 +19,14 @@ class CustomerDetailsController extends AbstractController
      * @param CustomerRepository $repo
      * @param SerializerInterface $serializer
      * @return JsonResponse
+     * @throws NoCustomerFoundException
      */
     public function index($id, CustomerRepository $repo, SerializerInterface $serializer)
     {
         $customer = $repo->find($id);
 
         if(empty($customer)) {
-            throw new ResourceNotFoundException('Customer not found', 404);
+            throw new NoCustomerFoundException('Customer not found', 404);
         } else {
             $json = $serializer->serialize($customer, 'json', SerializationContext::create()->setGroups(['Default','customerDetails']));
 
