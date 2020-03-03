@@ -27,8 +27,6 @@ class CreateCustomerController extends AbstractController
         $response = $service->customerCreate($this->getUser(),
             $serializer->deserialize($request->getContent(), Customer::class, 'json'));
 
-//        dd($response);
-
         if ($response instanceof ConstraintViolationList) {
             $json = $serializer->serialize($response, 'json');
 

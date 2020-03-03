@@ -2,8 +2,7 @@
 
 namespace App\Controller;
 
-use App\Repository\CustomerRepository;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Service\DeleteCustomerService;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -14,33 +13,19 @@ class DeleteCustomerController extends AbstractController
     /**
      * @Route("/customers/{id<\d+>}", name="delete_customer", methods={"DELETE"})
      * @param $id
-     * @param CustomerRepository $repo
-     * @param EntityManagerInterface $em
      * @param SerializerInterface $serializer
+     * @param DeleteCustomerService $service
      * @return JsonResponse
+     * @throws Exceptions\NoCustomerFoundException
      */
-    public function index($id, CustomerRepository $repo, EntityManagerInterface $em, SerializerInterface $serializer)
+    public function index($id,  SerializerInterface $serializer, DeleteCustomerService $service)
     {
-        $customer = $repo->find($id);
-        if (!empty($customer)) {
-            $em->remove($customer);
-            $em->flush();
 
-            $response = [
-                'message' => 'Customer have been deleted'
-            ];
+        $response = $service->deleteCustomer($id);
 
-            $json = $serializer->serialize($response, 'json');
+        $json = $serializer->serialize($response, 'json');
 
-            return new JsonResponse($json, 200, [], true);
-        } else {
-            $response = [
-                'message' => 'This customer don\'t exist'
-            ];
+        return new JsonResponse($json, 200, [], true);
 
-            $json = $serializer->serialize($response, 'json');
-
-            return new JsonResponse($json, 400, [], true);
-        }
     }
 }
