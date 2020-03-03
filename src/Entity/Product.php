@@ -55,7 +55,7 @@ class Product
 
     /**
      * @ORM\Column(type="float")
-     * @Groups({"productList", "productDetails"})
+     * @Groups({"productList", "productDetails"})     *
      *
      */
     private $price;

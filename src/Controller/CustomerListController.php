@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Representation\CustomerRepresentation;
-use JMS\Serializer\SerializationContext;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -14,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CustomerListController extends AbstractController
 {
     /**
-     * @Route("/customers", name="customer_list")
+     * @Route("/customers", name="customer_list", methods={"GET"})
      * @param SerializerInterface $serializer
      * @param CustomerRepresentation $representation
      * @param Request $request

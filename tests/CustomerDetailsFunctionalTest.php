@@ -43,13 +43,13 @@ class CustomerDetailsFunctionalTest extends WebTestCase
     public function testCustomerDetails()
     {
         $client = $this->createAuthenticatedClient('PhoneSale', 'test');
-        $client->request('GET', '/customers/251');
+        $client->request('GET', '/customers/1');
 
         $data = json_decode($client->getResponse()->getContent(), true);
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $this->assertIsArray($data);
         $this->assertJson($client->getResponse()->getContent());
-        $this->assertCount(9, $data);
+        $this->assertCount(10, $data);
     }
 }

@@ -4,9 +4,26 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Groups;
+use Hateoas\Configuration\Annotation as Hateoas;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CustomerRepository")
+ * @Hateoas\Relation(
+ *     "self",
+ *     href = @Hateoas\Route(
+ *     "customer_details",
+ *     parameters={"id" = "expr(object.getId())"}
+ *     ),
+ *     exclusion = @Hateoas\Exclusion(groups = {"customersList", "customerDetails"})
+ * )
+ * @Hateoas\Relation(
+ *     "list",
+ *     href = @Hateoas\Route(
+ *     "customer_list"),
+ *      exclusion = @Hateoas\Exclusion(groups = {"customerDetails"})
+ * )
  */
 class Customer
 {
@@ -21,36 +38,81 @@ class Customer
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"customersList", "customerDetails"})
+     * @Assert\NotBlank
+     * @Assert\NotNull
+     * @Assert\Type("string")
+     * @Assert\Length(
+     *     min = 3,
+     *     max = 255,
+     *     minMessage = "Name must be at least {{ limit }} characters long",
+     *     maxMessage = "Name cannot be longer than {{ limit }} characters"
+     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"customerDetails"})
+     * @Assert\NotBlank
+     * @Assert\NotNull
+     * @Assert\Type("string")
+     * @Assert\Length(
+     *     min = 3,
+     *     max = 255,
+     *     minMessage = "Street must be at least {{ limit }} characters long",
+     *     maxMessage = "Street cannot be longer than {{ limit }} characters"
+     * )
      */
     private $street;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255)     *
      * @Groups({"customerDetails"})
+     * @Assert\NotBlank
+     * @Assert\NotNull
+     * @Assert\Type("string")
+     * @Assert\Length(
+     *     min = 3,
+     *     max = 255,
+     *     minMessage = "City must be at least {{ limit }} characters long",
+     *     maxMessage = "City cannot be longer than {{ limit }} characters"
+     * )
      */
     private $city;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("customerDetails")
+     * @Assert\NotBlank
+     * @Assert\NotNull
+     * @Assert\Type("string")
      */
     private $zipCode;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("customerDetails")
+     * @Assert\NotBlank
+     * @Assert\NotNull
+     * @Assert\Type("string")
+     * @Assert\Length(
+     *     min = 3,
+     *     max = 255,
+     *     minMessage = "Country must be at least {{ limit }} characters long",
+     *     maxMessage = "Country cannot be longer than {{ limit }} characters"
+     * )
      */
     private $country;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"customersList", "customerDetails"})
+     * @Assert\NotBlank
+     * @Assert\NotNull
+     * @Assert\Type("string")
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email"
+     * )
      */
     private $mail;
 
@@ -60,7 +122,9 @@ class Customer
      */
     private $createdAt;
 
+
     /**
+     * @var  UserInterface
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="customers")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -155,12 +219,12 @@ class Customer
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getUser(): ?UserInterface
     {
         return $this->user;
     }
 
-    public function setUser(?User $user): self
+    public function setUser(?UserInterface $user): self
     {
         $this->user = $user;
 

@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductListController extends AbstractController
 {
     /**
-     * @Route("/products", name="product_list")
+     * @Route("/products", name="product_list", methods={"GET"})
      * @param SerializerInterface $serializer
      * @param ProductRepresentation $representation
      * @param Request $request
