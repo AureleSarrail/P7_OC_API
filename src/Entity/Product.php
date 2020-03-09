@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\Groups;
 use Hateoas\Configuration\Annotation as Hateoas;
 
@@ -35,13 +36,15 @@ class Product
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Since("1")
      * @Groups({"productList", "productDetails"})
-     *
+     * @Serializer\Until("1")
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Since("1")
      * @Groups("productDetails")
      *
      */
@@ -49,12 +52,14 @@ class Product
 
     /**
      * @ORM\Column(type="array")
+     * @Serializer\Since("1")
      * @Groups("productDetails")
      */
     private $characteristics;
 
     /**
      * @ORM\Column(type="float")
+     * @Serializer\Since("1")
      * @Groups({"productList", "productDetails"})     *
      *
      */
@@ -62,6 +67,7 @@ class Product
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Brand", inversedBy="Product")
+     * @Serializer\Since("1")
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"productList", "productDetails"})
      */

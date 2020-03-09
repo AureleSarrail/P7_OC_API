@@ -2,10 +2,17 @@
 
 namespace App\Tests;
 
-use Symfony\Bundle\FrameworkBundle\Client;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class CustomerDetailsFunctionalTest extends WebTestCase
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
+
+/**
+ * Trait LoginTrait
+ * @package App\Tests
+ * @method createClient
+ *
+ */
+
+trait LoginTrait
 {
     /**
      * Create a client with a default Authorization header.
@@ -13,10 +20,11 @@ class CustomerDetailsFunctionalTest extends WebTestCase
      * @param string $username
      * @param string $password
      *
-     * @return Client
+     * @return KernelBrowser
      */
     protected function createAuthenticatedClient($username = 'user', $password = 'password')
     {
+        /** @var KernelBrowser $client */
         $client = static::createClient();
         $client->request(
             'POST',
@@ -31,25 +39,8 @@ class CustomerDetailsFunctionalTest extends WebTestCase
         );
 
         $data = json_decode($client->getResponse()->getContent(), true);
-
-//        dd($data);
-
-//        $client = static::createClient();
         $client->setServerParameter('HTTP_Authorization', sprintf('Bearer %s', $data['token']));
 
         return $client;
-    }
-
-    public function testCustomerDetails()
-    {
-        $client = $this->createAuthenticatedClient('PhoneSale', 'test');
-        $client->request('GET', '/api/customers/1');
-
-        $data = json_decode($client->getResponse()->getContent(), true);
-
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertIsArray($data);
-        $this->assertJson($client->getResponse()->getContent());
-        $this->assertCount(10, $data);
     }
 }

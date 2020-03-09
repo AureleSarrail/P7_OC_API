@@ -1,4 +1,8 @@
 controllers:
     resource: ../../src/Controller/
     type: annotation
-    prefix: /api
+    prefix: /api/{version}
+    requirements:
+        version: '\d+'
+    defaults:
+        version: 1

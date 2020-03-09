@@ -10,11 +10,13 @@ use Hateoas\Representation\CollectionRepresentation;
 use Hateoas\Representation\PaginatedRepresentation;
 use JMS\Serializer\ArrayTransformerInterface;
 use JMS\Serializer\ContextFactory\SerializationContextFactoryInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class CustomerRepresentation
 {
 
+    const GROUP = 'customersList';
     /**
      * @var CustomerRepository
      */
@@ -27,23 +29,40 @@ class CustomerRepresentation
      * @var UserRepository
      */
     private $userRepo;
+    /**
+     * @var RequestStack
+     */
+    private $requestStack;
 
 
+    /**
+     * CustomerRepresentation constructor.
+     * @param CustomerRepository $customerRepo
+     * @param ArrayTransformerInterface $arrayTransformer
+     * @param SerializationContextFactoryInterface $factory
+     * @param UserRepository $userRepo
+     * @param RequestStack $requestStack
+     */
     public function __construct(
         CustomerRepository $customerRepo,
         ArrayTransformerInterface $arrayTransformer,
         SerializationContextFactoryInterface $factory,
-        UserRepository $userRepo
+        UserRepository $userRepo,
+        RequestStack $requestStack
     ) {
         $this->customerRepo = $customerRepo;
         $this->arrayTransformer = $arrayTransformer;
+        $this->requestStack = $requestStack;
         $this->context = $factory->createSerializationContext();
-        $this->context->setGroups('customersList');
+        $this->context->setGroups(self::GROUP);
+        $this->context->setVersion($requestStack->getCurrentRequest()->get('version'));
         $this->userRepo = $userRepo;
     }
 
     public function paginatedRepresentation(UserInterface $userInterface, $page, $limit)
     {
+//        dd($this->context);
+
         $username = $userInterface->getUsername();
         $user = $this->userRepo->findOneBy(['username' => $username]);
 
@@ -66,6 +85,5 @@ class CustomerRepresentation
         );
 
         return $paginatedCollection;
-
     }
 }
