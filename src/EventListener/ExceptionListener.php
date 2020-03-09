@@ -6,7 +6,6 @@ namespace App\EventListener;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
-use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
 class ExceptionListener
 {
@@ -21,7 +20,7 @@ class ExceptionListener
 
         $response = new Response();
         $response->setContent($message);
-        $response->setStatusCode($exception->getCode());
+//        $response->setStatusCode($exception->getCode());
 
 //        if ($exception instanceof HttpExceptionInterface) {
 //            $response->setStatusCode($exception->getStatusCode());
