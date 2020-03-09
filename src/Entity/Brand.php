@@ -20,7 +20,7 @@ class Brand
      * @Serializer\Since("1")
      * @Groups({"productList", "productDetails"})
      */
-    private $id;
+    private $idBrand;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -41,9 +41,9 @@ class Brand
         $this->product = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getIdBrand(): ?int
     {
-        return $this->id;
+        return $this->idBrand;
     }
 
     public function getName(): ?string

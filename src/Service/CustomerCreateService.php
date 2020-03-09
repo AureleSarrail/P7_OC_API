@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Service;
-
 
 use App\Entity\Customer;
 use App\Repository\CustomerRepository;
@@ -10,7 +8,6 @@ use App\Repository\UserRepository;
 use App\Validator\CustomerCreationValidator;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -38,7 +35,7 @@ class CustomerCreateService
      * @param CustomerRepository $customerRepository
      * @param UserRepository $userRepository
      * @param EntityManagerInterface $manager
-     * @param CustomerCreationValidator $validator
+     * @param ValidatorInterface $validator
      */
     public function __construct(
         CustomerRepository $customerRepository,
@@ -59,8 +56,7 @@ class CustomerCreateService
 
         if (count($errors) > 0) {
             return $errors;
-        }
-        else {
+        } else {
             $customer->setUser($user)
                 ->setCreatedAt(new \DateTime());
 

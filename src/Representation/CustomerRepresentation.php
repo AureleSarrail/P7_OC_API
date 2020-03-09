@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Representation;
-
 
 use App\Repository\CustomerRepository;
 use App\Repository\UserRepository;
@@ -66,8 +64,8 @@ class CustomerRepresentation
         $username = $userInterface->getUsername();
         $user = $this->userRepo->findOneBy(['username' => $username]);
 
-        $id = $user->getId();
-        $pager = $this->customerRepo->search($id, $page, $limit);
+        $idUser = $user->getIdUser();
+        $pager = $this->customerRepo->search($idUser, $page, $limit);
 
         $normalized = $this->arrayTransformer->toArray($pager->getCurrentPageResults(), $this->context);
 

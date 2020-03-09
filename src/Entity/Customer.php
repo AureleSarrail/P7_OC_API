@@ -41,7 +41,7 @@ class Customer
      * @ORM\Column(type="integer")
      * @Groups({"customersList", "customerDetails"})
      */
-    private $id;
+    private $idCustomer;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -145,9 +145,9 @@ class Customer
      */
     private $user;
 
-    public function getId(): ?int
+    public function getIdCustomer(): ?int
     {
-        return $this->id;
+        return $this->idCustomer;
     }
 
     public function getName(): ?string

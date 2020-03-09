@@ -17,7 +17,7 @@ class ProductDetailsController extends AbstractController
 
     /**
      * @Route("/products/{id<\d+>}", name="product_details", methods={"GET"})
-     * @param $id
+     * @param $idProduct
      * @param ProductRepository $repo
      * @param SerializerInterface $serializer
      * @param ContextCreationService $service
@@ -25,13 +25,13 @@ class ProductDetailsController extends AbstractController
      * @throws NoProductFoundException
      */
     public function index(
-        $id,
+        $idProduct,
         ProductRepository $repo,
         SerializerInterface $serializer,
         ContextCreationService $service
     ): Response {
         $context = $service->getContext(self::GROUP);
-        $product = $repo->find($id);
+        $product = $repo->find($idProduct);
 
         if (empty($product)) {
             throw new NoProductFoundException('Le produit est inconnu !', 404);

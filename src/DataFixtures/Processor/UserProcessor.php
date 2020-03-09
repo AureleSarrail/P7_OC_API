@@ -8,8 +8,6 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 final class UserProcessor implements ProcessorInterface
 {
-
-
     /**
      * @var UserPasswordEncoderInterface
      */
@@ -17,7 +15,6 @@ final class UserProcessor implements ProcessorInterface
 
     public function __construct(UserPasswordEncoderInterface $encoder)
     {
-
         $this->encoder = $encoder;
     }
 
@@ -29,7 +26,6 @@ final class UserProcessor implements ProcessorInterface
         if (!$object instanceof User) {
             return;
         }
-
         $object->setPassword($this->encoder->encodePassword($object, $object->getPlainPassword()));
     }
 
@@ -38,6 +34,6 @@ final class UserProcessor implements ProcessorInterface
      */
     public function postProcess(string $fixtureId, $object): void
     {
-// do nothing
+        // do nothing
     }
 }

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Service;
-
 
 use JMS\Serializer\ContextFactory\SerializationContextFactoryInterface;
 use Symfony\Component\HttpFoundation\RequestStack;

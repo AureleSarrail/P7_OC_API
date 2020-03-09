@@ -32,7 +32,7 @@ class Product
      * @ORM\Column(type="integer")
      * @Groups({"productList", "productDetails"})
      */
-    private $id;
+    private $idProduct;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -73,9 +73,9 @@ class Product
      */
     private $brand;
 
-    public function getId(): ?int
+    public function getIdProduct(): ?int
     {
-        return $this->id;
+        return $this->idProduct;
     }
 
     public function getName(): ?string
