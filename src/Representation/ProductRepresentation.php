@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 class ProductRepresentation
 {
     const MAX_PER_PAGE = 5;
+    const GROUP = 'productList';
     /**
      * @var ArrayTransformerInterface
      */
@@ -43,7 +44,7 @@ class ProductRepresentation
         $this->arrayTransformer = $arrayTransformer;
         $this->requestStack = $requestStack;
         $this->context = $factory->createSerializationContext();
-        $this->context->setGroups('productList')
+        $this->context->setGroups(self::GROUP)
             ->setVersion($requestStack->getCurrentRequest()->get('version'));
         $this->repo = $repo;
 

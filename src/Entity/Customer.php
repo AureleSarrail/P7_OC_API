@@ -139,6 +139,7 @@ class Customer
 
     /**
      * @var  UserInterface
+     * @Serializer\Since("1")
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="customers")
      * @ORM\JoinColumn(nullable=false)
      */

@@ -28,8 +28,6 @@ class ProductListController extends AbstractController
         $page = $request->query->get('page', 1);
         $limit = $request->query->get('limit', 5);
 
-        dd($request->attributes->get('version'));
-
         $paginatedCollection = $representation->paginatedRepresentation($page, $limit);
 
         $json = $serializer->serialize($paginatedCollection, 'json');

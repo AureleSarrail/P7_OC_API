@@ -16,6 +16,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class CustomerRepresentation
 {
 
+    const GROUP = 'customersList';
     /**
      * @var CustomerRepository
      */
@@ -53,7 +54,7 @@ class CustomerRepresentation
         $this->arrayTransformer = $arrayTransformer;
         $this->requestStack = $requestStack;
         $this->context = $factory->createSerializationContext();
-        $this->context->setGroups('customersList');
+        $this->context->setGroups(self::GROUP);
         $this->context->setVersion($requestStack->getCurrentRequest()->get('version'));
         $this->userRepo = $userRepo;
     }

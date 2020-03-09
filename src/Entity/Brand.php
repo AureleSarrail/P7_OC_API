@@ -17,18 +17,21 @@ class Brand
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Serializer\Since("1")
      * @Groups({"productList", "productDetails"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Since("1")
      * @Groups({"productList", "productDetails"})
      */
     private $name;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Product", mappedBy="brand")
+     * @Serializer\Since("1")
      * @Groups("brandShow")
      */
     private $product;
