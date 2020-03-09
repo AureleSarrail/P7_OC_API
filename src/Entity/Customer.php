@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\Groups;
 use Hateoas\Configuration\Annotation as Hateoas;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -45,6 +46,7 @@ class Customer
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"customersList", "customerDetails"})
+     * @Serializer\Since("1")
      * @Assert\NotBlank
      * @Assert\NotNull
      * @Assert\Type("string")
@@ -75,6 +77,7 @@ class Customer
     /**
      * @ORM\Column(type="string", length=255)     *
      * @Groups({"customerDetails"})
+     * @Serializer\Since("1")
      * @Assert\NotBlank
      * @Assert\NotNull
      * @Assert\Type("string")
@@ -89,6 +92,7 @@ class Customer
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Since("1")
      * @Groups("customerDetails")
      * @Assert\NotBlank
      * @Assert\NotNull
@@ -98,6 +102,7 @@ class Customer
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Since("1")
      * @Groups("customerDetails")
      * @Assert\NotBlank
      * @Assert\NotNull
@@ -113,6 +118,7 @@ class Customer
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Since("1")
      * @Groups({"customersList", "customerDetails"})
      * @Assert\NotBlank
      * @Assert\NotNull
@@ -125,6 +131,7 @@ class Customer
 
     /**
      * @ORM\Column(type="datetime")
+     * @Serializer\Until("1")
      * @Groups({"customersList", "customerDetails"})
      */
     private $createdAt;

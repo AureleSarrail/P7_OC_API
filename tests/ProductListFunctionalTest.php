@@ -44,7 +44,7 @@ class ProductListFunctionalTest extends WebTestCase
     {
         $client = $this->createAuthenticatedClient('PhoneSale', 'test');
 
-        $client->request('GET', '/products');
+        $client->request('GET', '/api/products');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 

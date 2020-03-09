@@ -9,6 +9,7 @@ use Hateoas\Representation\CollectionRepresentation;
 use Hateoas\Representation\PaginatedRepresentation;
 use JMS\Serializer\ArrayTransformerInterface;
 use JMS\Serializer\ContextFactory\SerializationContextFactoryInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class ProductRepresentation
 {
@@ -21,16 +22,31 @@ class ProductRepresentation
      * @var ProductRepository
      */
     private $repo;
+    /**
+     * @var RequestStack
+     */
+    private $requestStack;
 
+    /**
+     * ProductRepresentation constructor.
+     * @param SerializationContextFactoryInterface $factory
+     * @param ArrayTransformerInterface $arrayTransformer
+     * @param ProductRepository $repo
+     * @param RequestStack $requestStack
+     */
     public function __construct(
         SerializationContextFactoryInterface $factory,
         ArrayTransformerInterface $arrayTransformer,
-        ProductRepository $repo
+        ProductRepository $repo,
+        RequestStack $requestStack
     ) {
         $this->arrayTransformer = $arrayTransformer;
+        $this->requestStack = $requestStack;
         $this->context = $factory->createSerializationContext();
-        $this->context->setGroups('productList');
+        $this->context->setGroups('productList')
+            ->setVersion($requestStack->getCurrentRequest()->get('version'));
         $this->repo = $repo;
+
     }
 
     public function paginatedRepresentation($page, $limit)

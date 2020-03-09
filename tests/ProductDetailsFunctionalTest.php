@@ -44,7 +44,7 @@ class ProductDetailsFunctionalTest extends WebTestCase
     {
         $client = $this->createAuthenticatedClient('PhoneSale', 'test');
 
-        $client->request('GET', '/products/1');
+        $client->request('GET', '/api/products/1');
 
         $data = json_decode($client->getResponse()->getContent(), true);
 

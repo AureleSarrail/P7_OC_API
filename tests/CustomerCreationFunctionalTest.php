@@ -54,7 +54,7 @@ class CustomerCreationFunctionalTest extends WebTestCase
         ];
         $json = json_encode($data);
         $client = $this->createAuthenticatedClient('PhoneSale', 'test');
-        $client->request('POST', '/customers', [], [], [], $json);
+        $client->request('POST', '/api/customers', [], [], [], $json);
 
         $this->assertEquals(201, $client->getResponse()->getStatusCode());
         $this->assertJson($client->getResponse()->getContent());
