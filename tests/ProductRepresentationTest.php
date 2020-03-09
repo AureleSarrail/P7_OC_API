@@ -17,7 +17,7 @@ class ProductRepresentationTest extends TestCase
     /**
      * @var ProductRepresentation
      */
-    private $productRepresentation;
+    private $representation;
 
     public function setUp()
     {
@@ -36,14 +36,14 @@ class ProductRepresentationTest extends TestCase
         $pager->method('getNbPages')
             ->willReturn(20);
 
-        $this->productRepresentation = new ProductRepresentation($factory,$arrayTransformer,$repo);
+        $this->representation = new ProductRepresentation($factory,$arrayTransformer,$repo);
 
-        return $this->productRepresentation;
+        return $this->representation;
     }
 
     public function testPaginatedRepresentation()
     {
-        $paginated = $this->productRepresentation->paginatedRepresentation(1,5);
+        $paginated = $this->representation->paginatedRepresentation(1,5);
 
         $this->assertInstanceOf(PaginatedRepresentation::class, $paginated);
         $this->assertEquals(1, $paginated->getPage());

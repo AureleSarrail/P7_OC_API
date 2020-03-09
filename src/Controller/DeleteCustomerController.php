@@ -23,7 +23,7 @@ class DeleteCustomerController extends AbstractController
      */
     public function index(Customer $customer, SerializerInterface $serializer, DeleteCustomerService $service)
     {
-        $response = $service->deleteCustomer($customer->getId());
+        $response = $service->deleteCustomer($customer->getIdCustomer());
 
         $json = $serializer->serialize($response, 'json');
 

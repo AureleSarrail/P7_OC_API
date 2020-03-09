@@ -18,7 +18,7 @@ class CustomerDetailsController extends AbstractController
 
     /**
      * @Route("/customers/{id<\d+>}", name="customer_details", methods={"GET"})
-     * @param $id
+     * @param $idCustomer
      * @param CustomerRepository $repo
      * @param SerializerInterface $serializer
      * @param ContextCreationService $service
@@ -26,13 +26,13 @@ class CustomerDetailsController extends AbstractController
      * @throws NoCustomerFoundException
      */
     public function index(
-        $id,
+        $idCustomer,
         CustomerRepository $repo,
         SerializerInterface $serializer,
         ContextCreationService $service
     ) {
         $context = $service->getContext(self::GROUP);
-        $customer = $repo->find($id);
+        $customer = $repo->find($idCustomer);
 
         if (empty($customer)) {
             throw new NoCustomerFoundException('Customer not found', 404);

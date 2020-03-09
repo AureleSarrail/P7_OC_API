@@ -20,42 +20,13 @@ class CustomerRepository extends AbstractRepository
         parent::__construct($registry, Customer::class);
     }
 
-    public function search($id,$page,$limit = self::MAX_PER_PAGE)
+    public function search($idCustomer,$page,$limit = self::MAX_PER_PAGE)
     {
-        $qb = $this->createQueryBuilder('c')
+        $builder = $this->createQueryBuilder('c')
             ->where('c.user = :id')
-            ->setParameter('id', $id)
+            ->setParameter('id', $idCustomer)
             ->orderBy('c.id', 'asc');
 
-        return $this->paginate($qb,$limit,$page);
+        return $this->paginate($builder,$limit,$page);
     }
-
-    // /**
-    //  * @return Customer[] Returns an array of Customer objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Customer
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

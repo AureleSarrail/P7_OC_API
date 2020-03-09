@@ -13,8 +13,6 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  */
 class ProductRepository extends AbstractRepository
 {
-
-
     const MAX_PER_PAGE = 5;
 
     public function __construct(ManagerRegistry $registry)
@@ -22,13 +20,11 @@ class ProductRepository extends AbstractRepository
         parent::__construct($registry, Product::class);
     }
 
-
-
     public function search($page,$limit = self::MAX_PER_PAGE){
-        $qb = $this->createQueryBuilder('p')
+        $builder = $this->createQueryBuilder('p')
             ->orderBy('p.id', 'asc');
 
-        return $this->paginate($qb,$limit,$page);
+        return $this->paginate($builder,$limit,$page);
     }
 
     public function getSearchQuery($page){
@@ -39,5 +35,4 @@ class ProductRepository extends AbstractRepository
             ->orderBy('p.id', 'asc')
             ->getQuery();
     }
-
 }

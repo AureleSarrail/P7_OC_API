@@ -18,7 +18,7 @@ class User implements UserInterface
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private $idUser;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
@@ -54,9 +54,9 @@ class User implements UserInterface
         $this->customers = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getIdUser(): ?int
     {
-        return $this->id;
+        return $this->idUser;
     }
 
     /**

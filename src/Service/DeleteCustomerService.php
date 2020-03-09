@@ -15,31 +15,31 @@ class DeleteCustomerService
     /**
      * @var EntityManagerInterface
      */
-    private $em;
+    private $manager;
 
     /**
      * DeleteCustomerService constructor.
      * @param CustomerRepository $repo
-     * @param EntityManagerInterface $em
+     * @param EntityManagerInterface $entityManager
      */
-    public function __construct(CustomerRepository $repo, EntityManagerInterface $em)
+    public function __construct(CustomerRepository $repo, EntityManagerInterface $entityManager)
     {
         $this->repo = $repo;
-        $this->em = $em;
+        $this->manager = $entityManager;
     }
 
     /**
-     * @param $id
+     * @param $idCustomer
      * @return array
      * @throws NoCustomerFoundException
      */
-    public function deleteCustomer($id)
+    public function deleteCustomer($idCustomer)
     {
-        $customer = $this->repo->find($id);
+        $customer = $this->repo->find($idCustomer);
 
         if (!empty($customer)) {
-            $this->em->remove($customer);
-            $this->em->flush();
+            $this->manager->remove($customer);
+            $this->manager->flush();
 
             $response = [
                 'message' => 'Customer deleted with success'
