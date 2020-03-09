@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Representation;
-
 
 use App\Repository\CustomerRepository;
 use App\Repository\UserRepository;

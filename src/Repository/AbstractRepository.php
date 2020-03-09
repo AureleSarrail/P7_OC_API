@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Repository;
-
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
@@ -20,7 +18,6 @@ abstract class AbstractRepository extends ServiceEntityRepository
         $pager = new Pagerfanta(new DoctrineORMAdapter($qb));
         $pager->setMaxPerPage((int)$limit);
         $pager->setCurrentPage($page);
-
 
         return $pager;
     }

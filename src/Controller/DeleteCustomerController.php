@@ -21,7 +21,7 @@ class DeleteCustomerController extends AbstractController
      * @throws Exceptions\NoCustomerFoundException
      * @IsGranted("CUSTOMER_DELETE", subject="customer")
      */
-    public function index(Customer $customer,  SerializerInterface $serializer, DeleteCustomerService $service)
+    public function index(Customer $customer, SerializerInterface $serializer, DeleteCustomerService $service)
     {
         $response = $service->deleteCustomer($customer->getId());
 

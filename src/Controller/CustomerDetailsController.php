@@ -15,6 +15,7 @@ class CustomerDetailsController extends AbstractController
 {
 
     const GROUP = 'customerDetails';
+
     /**
      * @Route("/customers/{id<\d+>}", name="customer_details", methods={"GET"})
      * @param $id
@@ -24,12 +25,16 @@ class CustomerDetailsController extends AbstractController
      * @return JsonResponse
      * @throws NoCustomerFoundException
      */
-    public function index($id, CustomerRepository $repo, SerializerInterface $serializer,ContextCreationService $service)
-    {
+    public function index(
+        $id,
+        CustomerRepository $repo,
+        SerializerInterface $serializer,
+        ContextCreationService $service
+    ) {
         $context = $service->getContext(self::GROUP);
         $customer = $repo->find($id);
 
-        if(empty($customer)) {
+        if (empty($customer)) {
             throw new NoCustomerFoundException('Customer not found', 404);
         } else {
             $json = $serializer->serialize($customer, 'json', $context);

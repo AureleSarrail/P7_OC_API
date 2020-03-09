@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Service;
-
 
 use App\Controller\Exceptions\NoCustomerFoundException;
 use App\Repository\CustomerRepository;
@@ -10,7 +8,6 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class DeleteCustomerService
 {
-
     /**
      * @var CustomerRepository
      */
