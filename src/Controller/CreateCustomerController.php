@@ -6,12 +6,15 @@ use App\Entity\Customer;
 use App\Service\ContextCreationService;
 use App\Service\CustomerCreateService;
 use JMS\Serializer\SerializerInterface;
+use Nelmio\ApiDocBundle\Annotation\Model;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\ConstraintViolationList;
+use Swagger\Annotations as SWG;
+
 
 class CreateCustomerController extends AbstractController
 {
@@ -24,6 +27,22 @@ class CreateCustomerController extends AbstractController
      * @param CustomerCreateService $service
      * @param ContextCreationService $contextCreation
      * @return JsonResponse
+     * @SWG\Response(
+     *     response=201,
+     *     description="Create a new customer in the api Database",
+     *     @SWG\Schema(
+     *          type="array",
+     *          @SWG\Items(ref=@Model(type=Customer::class, groups={"customerDetails"}))
+     *  )
+     * )
+     * @SWG\Parameter(
+     *     name="body",
+     *     in="body",
+     *     @SWG\Schema(
+     *      type="array",
+     *     @SWG\Items(ref=@Model(type=Customer::class, groups={"customerCreate"}))
+     * )
+     * )
      */
     public function index(
         SerializerInterface $serializer,
