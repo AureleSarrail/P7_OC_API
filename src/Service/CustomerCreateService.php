@@ -5,7 +5,6 @@ namespace App\Service;
 use App\Entity\Customer;
 use App\Repository\CustomerRepository;
 use App\Repository\UserRepository;
-use App\Validator\CustomerCreationValidator;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -26,7 +25,7 @@ class CustomerCreateService
      */
     private $manager;
     /**
-     * @var CustomerCreationValidator
+     * @var ValidatorInterface
      */
     private $validator;
 

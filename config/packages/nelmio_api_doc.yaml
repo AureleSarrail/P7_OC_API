@@ -1,0 +1,12 @@
+nelmio_api_doc:
+    documentation:
+        host: api.example.com
+        schemes: [http, https]
+        info:
+            title: OpenClassroom_P7_API
+            description: An Api created in an education context using symfony 4.4
+            version: 1.0.0
+    areas: # to filter documented areas
+        path_patterns:
+            - ^/api(?!/doc$) # Accepts routes under /api except /api/doc
+    models: {use_jms: true}

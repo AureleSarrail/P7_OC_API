@@ -90,6 +90,9 @@
     "doctrine/reflection": {
         "version": "v1.1.0"
     },
+    "exsyst/swagger": {
+        "version": "v0.4.1"
+    },
     "friendsofsymfony/rest-bundle": {
         "version": "2.2",
         "recipe": {
@@ -218,6 +221,19 @@
             "./config/packages/test/nelmio_alice.yaml"
         ]
     },
+    "nelmio/api-doc-bundle": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "c8e0c38e1a280ab9e37587a8fa32b251d5bc1c94"
+        },
+        "files": [
+            "./config/packages/nelmio_api_doc.yaml",
+            "./config/routes/nelmio_api_doc.yaml"
+        ]
+    },
     "nikic/php-parser": {
         "version": "v4.3.0"
     },
@@ -274,6 +290,9 @@
         "files": [
             "./config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "symfony/asset": {
+        "version": "v4.4.5"
     },
     "symfony/browser-kit": {
         "version": "v4.4.4"
@@ -411,6 +430,9 @@
             "./config/packages/prod/monolog.yaml",
             "./config/packages/test/monolog.yaml"
         ]
+    },
+    "symfony/options-resolver": {
+        "version": "v4.4.5"
     },
     "symfony/orm-pack": {
         "version": "v1.0.7"
@@ -604,5 +626,8 @@
     },
     "zendframework/zend-eventmanager": {
         "version": "3.2.1"
+    },
+    "zircote/swagger-php": {
+        "version": "2.0.15"
     }
 }

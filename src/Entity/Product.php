@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\Groups;
 use Hateoas\Configuration\Annotation as Hateoas;
+use Swagger\Annotations as SWG;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
@@ -32,13 +33,14 @@ class Product
      * @ORM\Column(type="integer")
      * @Groups({"productList", "productDetails"})
      */
-    private $idProduct;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Serializer\Since("1")
      * @Groups({"productList", "productDetails"})
      * @Serializer\Until("1")
+     * @SWG\Property(type="string")
      */
     private $name;
 
@@ -73,9 +75,9 @@ class Product
      */
     private $brand;
 
-    public function getIdProduct(): ?int
+    public function getId(): ?int
     {
-        return $this->idProduct;
+        return $this->id;
     }
 
     public function getName(): ?string

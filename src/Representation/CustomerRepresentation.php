@@ -59,12 +59,10 @@ class CustomerRepresentation
 
     public function paginatedRepresentation(UserInterface $userInterface, $page, $limit)
     {
-//        dd($this->context);
-
         $username = $userInterface->getUsername();
         $user = $this->userRepo->findOneBy(['username' => $username]);
 
-        $idUser = $user->getIdUser();
+        $idUser = $user->getId();
         $pager = $this->customerRepo->search($idUser, $page, $limit);
 
         $normalized = $this->arrayTransformer->toArray($pager->getCurrentPageResults(), $this->context);

@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
+use Swagger\Annotations as SWG;
 
 class DeleteCustomerController extends AbstractController
 {
@@ -20,10 +21,14 @@ class DeleteCustomerController extends AbstractController
      * @return JsonResponse
      * @throws Exceptions\NoCustomerFoundException
      * @IsGranted("CUSTOMER_DELETE", subject="customer")
+     * @SWG\Response(
+     *     response=200,
+     *     description="Delete a customer from the Api Database"
+     * )
      */
     public function index(Customer $customer, SerializerInterface $serializer, DeleteCustomerService $service)
     {
-        $response = $service->deleteCustomer($customer->getIdCustomer());
+        $response = $service->deleteCustomer($customer->getId());
 
         $json = $serializer->serialize($response, 'json');
 

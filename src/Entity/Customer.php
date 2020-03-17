@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\Groups;
 use Hateoas\Configuration\Annotation as Hateoas;
+use Swagger\Annotations as SWG;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -41,7 +42,7 @@ class Customer
      * @ORM\Column(type="integer")
      * @Groups({"customersList", "customerDetails"})
      */
-    private $idCustomer;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -56,6 +57,7 @@ class Customer
      *     minMessage = "Name must be at least {{ limit }} characters long",
      *     maxMessage = "Name cannot be longer than {{ limit }} characters"
      * )
+     * @SWG\Property(type="string")
      */
     private $name;
 
@@ -145,9 +147,9 @@ class Customer
      */
     private $user;
 
-    public function getIdCustomer(): ?int
+    public function getId(): ?int
     {
-        return $this->idCustomer;
+        return $this->id;
     }
 
     public function getName(): ?string

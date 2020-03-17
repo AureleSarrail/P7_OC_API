@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Representation\ProductRepresentation;
 use JMS\Serializer\SerializerInterface;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Swagger\Annotations as SWG;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,6 +20,14 @@ class ProductListController extends AbstractController
      * @param ProductRepresentation $representation
      * @param Request $request
      * @return JsonResponse
+     * @SWG\Response(
+     *     response=200,
+     *     description="Returns a paginated list of available products",
+     *     @SWG\Schema(
+     *          type="array",
+     *          @SWG\Items(ref=@Model(type="Product::class", groups={"productList"}))
+     *  )
+     * )
      */
     public function index(
         SerializerInterface $serializer,
