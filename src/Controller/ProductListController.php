@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Product;
 
 class ProductListController extends AbstractController
 {
@@ -23,10 +24,19 @@ class ProductListController extends AbstractController
      * @SWG\Response(
      *     response=200,
      *     description="Returns a paginated list of available products",
-     *     @SWG\Schema(
-     *          type="array",
-     *          @SWG\Items(ref=@Model(type="Product::class", groups={"productList"}))
+     *     @Model(type=Product::class, groups={"productList"})
      *  )
+     * @SWG\Parameter(
+     *     name="page",
+     *     in="query",
+     *     type="integer",
+     *     description="The number of the page you want to see"
+     * )
+     * @SWG\Parameter(
+     *     name="limit",
+     *     in="query",
+     *     type="integer",
+     *     description="The number of products you want on one page"
      * )
      */
     public function index(

@@ -32,8 +32,16 @@ class CreateCustomerController extends AbstractController
      *     description="Create a new customer in the api Database",
      *     @SWG\Schema(
      *          type="array",
-     *          @SWG\Items(ref=@Model(type=Customer::class, groups={"customersDetails"}))
+     *          @SWG\Items(ref=@Model(type=Customer::class, groups={"customerDetails"}))
      *  )
+     * )
+     * @SWG\Parameter(
+     *     name="body",
+     *     in="body",
+     *     @SWG\Schema(
+     *      type="array",
+     *     @SWG\Items(ref=@Model(type=Customer::class, groups={"customerCreate"}))
+     * )
      * )
      */
     public function index(

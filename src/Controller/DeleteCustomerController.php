@@ -25,6 +25,10 @@ class DeleteCustomerController extends AbstractController
      *     response=200,
      *     description="Delete a customer from the Api Database"
      * )
+     * @SWG\Response(
+     *     response=404,
+     *     description="Customer Not Found"
+     * )
      */
     public function index(Customer $customer, SerializerInterface $serializer, DeleteCustomerService $service)
     {

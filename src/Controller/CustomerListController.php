@@ -27,6 +27,18 @@ class CustomerListController extends AbstractController
      *     @Model(type=Customer::class, groups={"customersList"})
      *  )
      * )
+     * @SWG\Parameter(
+     *     name="page",
+     *     in="query",
+     *     type="integer",
+     *     description="The number of the page you want to see"
+     * )
+     * @SWG\Parameter(
+     *     name="limit",
+     *     in="query",
+     *     type="integer",
+     *     description="The number of products you want on one page"
+     * )
      */
     public function index(SerializerInterface $serializer, CustomerRepresentation $representation, Request $request)
     {

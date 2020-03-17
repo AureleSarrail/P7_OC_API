@@ -46,7 +46,7 @@ class Customer
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"customersList", "customerDetails"})
+     * @Groups({"customersList", "customerDetails", "customerCreate"})
      * @Serializer\Since("1")
      * @Assert\NotBlank
      * @Assert\NotNull
@@ -63,7 +63,7 @@ class Customer
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"customerDetails"})
+     * @Groups({"customerDetails", "customerCreate"})
      * @Assert\NotBlank
      * @Assert\NotNull
      * @Assert\Type("string")
@@ -78,7 +78,7 @@ class Customer
 
     /**
      * @ORM\Column(type="string", length=255)     *
-     * @Groups({"customerDetails"})
+     * @Groups({"customerDetails", "customerCreate"})
      * @Serializer\Since("1")
      * @Assert\NotBlank
      * @Assert\NotNull
@@ -95,7 +95,7 @@ class Customer
     /**
      * @ORM\Column(type="string", length=255)
      * @Serializer\Since("1")
-     * @Groups("customerDetails")
+     * @Groups({"customerDetails", "customerCreate"})
      * @Assert\NotBlank
      * @Assert\NotNull
      * @Assert\Type("string")
@@ -105,7 +105,7 @@ class Customer
     /**
      * @ORM\Column(type="string", length=255)
      * @Serializer\Since("1")
-     * @Groups("customerDetails")
+     * @Groups({"customerDetails", "customerCreate"})
      * @Assert\NotBlank
      * @Assert\NotNull
      * @Assert\Type("string")
@@ -121,7 +121,7 @@ class Customer
     /**
      * @ORM\Column(type="string", length=255)
      * @Serializer\Since("1")
-     * @Groups({"customersList", "customerDetails"})
+     * @Groups({"customersList", "customerDetails", "customerCreate"})
      * @Assert\NotBlank
      * @Assert\NotNull
      * @Assert\Type("string")

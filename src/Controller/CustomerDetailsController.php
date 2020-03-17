@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Swagger\Annotations as SWG;
+use App\Entity\Customer;
 
 class CustomerDetailsController extends AbstractController
 {
@@ -33,6 +34,10 @@ class CustomerDetailsController extends AbstractController
      *          type="array",
      *          @SWG\Items(ref=@Model(type=Customer::class, groups={"customerDetails"}))
      *  )
+     * )
+     * @SWG\Response(
+     *     response=404,
+     *     description="Customer Not found"
      * )
      */
     public function index(

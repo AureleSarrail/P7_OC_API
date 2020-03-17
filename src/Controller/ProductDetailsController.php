@@ -34,6 +34,10 @@ class ProductDetailsController extends AbstractController
      *          @SWG\Items(ref=@Model(type=Product::class, groups={"productDetails"}))
      *  )
      * )
+     * @SWG\Response(
+     *     response=404,
+     *     description="Unknown product"
+     * )
      */
     public function index(
         $id,
@@ -45,7 +49,7 @@ class ProductDetailsController extends AbstractController
         $product = $repo->find($id);
 
         if (empty($product)) {
-            throw new NoProductFoundException('Le produit est inconnu !', 404);
+            throw new NoProductFoundException('Unknown Product', 404);
         } else {
             $json = $serializer->serialize($product, 'json', $context);
 
